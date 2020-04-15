@@ -49,7 +49,7 @@ static void listMovies(const string& player, const vector<film>& credits) {
     while (numMovies < (credits.size() - kNumFilmsToPrint)) { numMovies++; ++curr; }
     for (;curr != credits.end(); ++curr) {
       const film& movie = *curr;
-      cout << setw(5) << ++numMovies << ".) " << movie.title << " (" << movie.year << ")" << endl;      
+      cout << setw(5) << ++numMovies << ".) " << movie.title << " (" << movie.year << ")" << endl;
     }
   }
 }
@@ -84,11 +84,11 @@ static void listCostars(const string &player, const vector<film>& credits, const
       }
     }
   }
-  
+
   cout << endl;
   cout << "  " << player << " has worked with " << (int) costars.size() << " other people, "
        << "and those other people are:" << endl << endl;
-  
+
   unsigned int numCostars = 0;
   map<string, set<film>>::const_iterator curr;
   for (curr = costars.begin(); curr != costars.end() && numCostars < kNumCostarsToPrint; ++curr) {
@@ -134,11 +134,11 @@ static void listCostars(const string &player, const vector<film>& credits, const
 static void listAllMoviesAndCostars(const imdb& db, const string& player) {
   vector<film> credits;
   if (!db.getCredits(player, credits) || credits.size() == 0) {
-    cout << "We're sorry, but " << player 
+    cout << "We're sorry, but " << player
 	 << " doesn't appear to be in our database." << endl;
     return;
   }
-  
+
   listMovies(player, credits);
   listCostars(player, credits, db);
 }
@@ -151,7 +151,7 @@ int main(int argc, const char *argv[]) {
 
   imdb db(kIMDBDataDirectory);
   if (!db.good()) {
-    cerr << "Data directory not found!  Aborting..." << endl; 
+    cerr << "Data directory not found!  Aborting..." << endl;
     return kDatabaseNotFound;
   }
 

@@ -11,7 +11,7 @@ using namespace std;
  * each entry in the vector is one leg in the path from an actor to
  * another.
  */
-path::path(const string& player) : startPlayer(player) {} 
+path::path(const string& player) : startPlayer(player) {}
 // ommission of links from init list calls the default constructor
 
 /**
@@ -22,7 +22,7 @@ path::path(const string& player) : startPlayer(player) {}
  */
 void path::addConnection(const film& movie, const string& player) {
   links.push_back(connection(movie, player));
-} 
+}
 
 /**
  * Remove the last connection pair 
@@ -56,14 +56,14 @@ void path::reverse() {
 
 ostream& operator<<(ostream& os, const path& p) {
   if (p.links.size() == 0) return os << string("[Empty path]") << endl;
-  
+
   os << p.startPlayer << " was in ";
   for (int i = 0; i < (int) p.links.size(); i++) {
-    os << "\"" << p.links[i].movie.title << "\" (" << p.links[i].movie.year << ") with " 
+    os << "\"" << p.links[i].movie.title << "\" (" << p.links[i].movie.year << ") with "
        << p.links[i].player << "." << endl;
     if (i + 1 == (int) p.links.size()) break;
     os << p.links[i].player << " was in ";
   }
-  
+
   return os;
 }

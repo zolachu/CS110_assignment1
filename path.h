@@ -17,23 +17,23 @@
  */
 
 class path {
-  
-/**
- * Overloaded operator<< function
- * ------------------------------
- * Function designed to format and publish an instance of
- * a path class.  Because the friend keyword is used, operator<<
- * isn't a method, but instead a global function marked as a 'friend' 
- * of the path.  While functions and methods normally respect
- * the privacy of a class, interacting with it via its public
- * interface, friends of a class are privileged and *can* directly
- * access the private portions.  Friendship shouldn't be granted 
- * all that often--typically, it's granted only to functions 
- * that are being implemented on behalf of the class.  operator<<
- * is one of those rare functions.
- */
+
+  /**
+   * Overloaded operator<< function
+   * ------------------------------
+   * Function designed to format and publish an instance of
+   * a path class.  Because the friend keyword is used, operator<<
+   * isn't a method, but instead a global function marked as a 'friend' 
+   * of the path.  While functions and methods normally respect
+   * the privacy of a class, interacting with it via its public
+   * interface, friends of a class are privileged and *can* directly
+   * access the private portions.  Friendship shouldn't be granted 
+   * all that often--typically, it's granted only to functions 
+   * that are being implemented on behalf of the class.  operator<<
+   * is one of those rare functions.
+   */
   friend std::ostream& operator<<(std::ostream& os, const path& p);
-  
+
  public:
   /**
    * Constructor: path
@@ -53,7 +53,7 @@ class path {
    *
    * @return the number of movies currently making up the
    *         path.
-   */  
+   */
   size_t getLength() const { return links.size(); };
 
   /**
@@ -75,7 +75,7 @@ class path {
    * @param movie a reference to the film record starring both the specified
    *              player and the last player in the path.
    * @param player a reference to the actor/actress appearing in the specified film.
-   */ 
+   */
   void addConnection(const film& movie, const std::string& player);
 
   /**
@@ -84,9 +84,9 @@ class path {
    * Pulls the last movie-player connection off the path, unless
    * the length of the path (as defined by our getLength() method) is 0,
    * in which case nothing happens.
-   */  
+   */
   void undoConnection();
-  
+
   /**
    * Method: getLastPlayer
    * ---------------------
@@ -95,7 +95,7 @@ class path {
    *
    * @return the address of a string storing the name of the
    *         last player.
-   */  
+   */
   const std::string& getLastPlayer() const;
 
   /**
@@ -104,7 +104,7 @@ class path {
    * Reverses the receiving path.
    */
   void reverse();
-  
+
  private:
   // private struct definition... no one else uses it, so I define it internally
   // if you think about it, the existence of this struct is really an implementation detail,
@@ -113,12 +113,12 @@ class path {
   struct connection {
     film movie;
     std::string player;
-    
-    // convenience struct with constructors.. 
+
+    // convenience struct with constructors..
     connection() {}
-    connection(const film& movie, const std::string& player) : movie(movie), player(player) {}
+  connection(const film& movie, const std::string& player) : movie(movie), player(player) {}
   };
-  
+
   std::string startPlayer;
   std::vector<connection> links;
 };
